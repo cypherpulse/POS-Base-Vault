@@ -84,31 +84,31 @@ export function MerchantSection() {
   }
 
   return (
-    <div className="glass-card p-6 lg:p-8 space-y-6 animate-fade-in">
-      <div className="flex items-center gap-3 mb-6">
-        <div className="w-12 h-12 rounded-xl bg-primary/20 flex items-center justify-center">
-          <Wallet className="w-6 h-6 text-primary" />
+    <div className="glass-card p-4 sm:p-6 lg:p-8 space-y-4 sm:space-y-6 animate-fade-in">
+      <div className="flex items-center gap-3 mb-4 sm:mb-6">
+        <div className="w-10 h-10 sm:w-12 sm:h-12 rounded-lg sm:rounded-xl bg-primary/20 flex items-center justify-center">
+          <Wallet className="w-5 h-5 sm:w-6 sm:h-6 text-primary" />
         </div>
         <div>
-          <h2 className="text-xl font-bold text-foreground">Merchant Withdrawals</h2>
+          <h2 className="text-lg sm:text-xl font-bold text-foreground">Merchant Withdrawals</h2>
           <p className="text-muted-foreground text-sm">Withdraw your funds from the vault</p>
         </div>
       </div>
 
       {isPaused && (
-        <div className="bg-destructive/10 border border-destructive/30 rounded-lg p-4 text-destructive text-sm">
+        <div className="bg-destructive/10 border border-destructive/30 rounded-lg p-3 sm:p-4 text-destructive text-sm">
           Contract is currently paused. Withdrawals are temporarily disabled.
         </div>
       )}
 
-      <div className="p-4 rounded-xl bg-primary/10 border border-primary/20">
-        <div className="flex items-center justify-between">
-          <span className="text-muted-foreground">Contract Balance</span>
-          <span className="text-2xl font-bold font-mono text-primary">{parseFloat(balanceEth).toFixed(6)} ETH</span>
+      <div className="p-3 sm:p-4 rounded-xl bg-primary/10 border border-primary/20">
+        <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2">
+          <span className="text-muted-foreground text-sm sm:text-base">Contract Balance</span>
+          <span className="text-xl sm:text-2xl font-bold font-mono text-primary">{parseFloat(balanceEth).toFixed(6)} ETH</span>
         </div>
       </div>
 
-      <div className="space-y-4">
+      <div className="space-y-4 sm:space-y-6">
         <div>
           <label className="text-sm font-medium text-muted-foreground mb-2 block">
             Withdraw Amount (ETH)
@@ -121,13 +121,13 @@ export function MerchantSection() {
             placeholder="0.0"
             value={amount}
             onChange={(e) => setAmount(e.target.value)}
-            className="font-mono text-lg h-14"
+            className="font-mono text-base sm:text-lg h-12 sm:h-14"
             disabled={isPaused || isPending || isConfirming}
           />
         </div>
 
         {amount && parseFloat(amount) > 0 && (
-          <div className="p-4 rounded-xl bg-muted/50 space-y-3 animate-fade-in">
+          <div className="p-3 sm:p-4 rounded-xl bg-muted/50 space-y-3 animate-fade-in">
             <div className="flex items-center gap-2 text-muted-foreground mb-2">
               <Calculator className="w-4 h-4" />
               <span className="text-sm font-medium">Fee Calculation</span>
@@ -152,7 +152,7 @@ export function MerchantSection() {
         <Button
           onClick={handleWithdraw}
           disabled={!amount || parseFloat(amount) <= 0 || parseFloat(amount) > parseFloat(balanceEth) || isPaused || isPending || isConfirming}
-          className="w-full h-14 text-lg font-semibold"
+          className="w-full h-12 sm:h-14 text-base sm:text-lg font-semibold"
         >
           {(isPending || isConfirming) ? (
             <>
@@ -161,7 +161,7 @@ export function MerchantSection() {
             </>
           ) : (
             <>
-              <Wallet className="w-5 h-5 mr-2" />
+              <Wallet className="w-4 h-4 sm:w-5 sm:h-5 mr-2" />
               Withdraw Funds
             </>
           )}
