@@ -69,28 +69,28 @@ export function InfoSection() {
   ];
 
   return (
-    <div className="glass-card p-6 lg:p-8 space-y-6 animate-fade-in">
-      <div className="flex items-center gap-3">
-        <div className="w-12 h-12 rounded-xl bg-primary/20 flex items-center justify-center">
-          <Info className="w-6 h-6 text-primary" />
+    <div className="glass-card p-4 sm:p-6 lg:p-8 space-y-4 sm:space-y-6 animate-fade-in">
+      <div className="flex items-center gap-3 mb-4 sm:mb-6">
+        <div className="w-10 h-10 sm:w-12 sm:h-12 rounded-lg sm:rounded-xl bg-primary/20 flex items-center justify-center">
+          <Info className="w-5 h-5 sm:w-6 sm:h-6 text-primary" />
         </div>
         <div>
-          <h2 className="text-xl font-bold text-foreground">Contract Info</h2>
+          <h2 className="text-lg sm:text-xl font-bold text-foreground">Contract Info</h2>
           <p className="text-muted-foreground text-sm">View contract state and constants</p>
         </div>
       </div>
 
       {/* Stats Grid */}
-      <div className="grid grid-cols-2 lg:grid-cols-4 gap-4">
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-4">
         {stats.map((stat, i) => (
           <div
             key={i}
-            className={`p-4 rounded-xl ${stat.highlight ? 'bg-primary/10 border border-primary/20' : 'bg-muted/50'}`}
+            className={`p-3 sm:p-4 rounded-xl ${stat.highlight ? 'bg-primary/10 border border-primary/20' : 'bg-muted/50'}`}
           >
-            <p className="text-sm text-muted-foreground mb-1">{stat.label}</p>
-            <p className={`text-lg font-bold font-mono ${
-              stat.status === 'success' ? 'text-success' : 
-              stat.status === 'error' ? 'text-destructive' : 
+            <p className="text-xs sm:text-sm text-muted-foreground mb-1">{stat.label}</p>
+            <p className={`text-base sm:text-lg font-bold font-mono ${
+              stat.status === 'success' ? 'text-success' :
+              stat.status === 'error' ? 'text-destructive' :
               stat.highlight ? 'text-primary' : 'text-foreground'
             }`}>
               {stat.value}
@@ -103,32 +103,32 @@ export function InfoSection() {
       <div className="space-y-3">
         <h3 className="text-sm font-medium text-muted-foreground">Contract Addresses</h3>
         {addresses.map((addr, i) => (
-          <div key={i} className="flex items-center justify-between p-3 rounded-lg bg-muted/50">
+          <div key={i} className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2 p-3 rounded-lg bg-muted/50">
             <div className="flex items-center gap-3">
-              <span className="text-sm text-muted-foreground w-20">{addr.label}</span>
-              <span className="font-mono text-sm">
-                {typeof addr.value === 'string' && addr.value.startsWith('0x') 
-                  ? formatAddress(addr.value) 
+              <span className="text-sm text-muted-foreground w-16 sm:w-20 flex-shrink-0">{addr.label}</span>
+              <span className="font-mono text-sm break-all">
+                {typeof addr.value === 'string' && addr.value.startsWith('0x')
+                  ? formatAddress(addr.value)
                   : addr.value}
               </span>
             </div>
             {typeof addr.value === 'string' && addr.value.startsWith('0x') && (
-              <div className="flex items-center gap-2">
+              <div className="flex items-center gap-1 sm:gap-2">
                 <Button
                   size="icon"
                   variant="ghost"
-                  className="h-8 w-8"
+                  className="h-8 w-8 flex-shrink-0"
                   onClick={() => copyToClipboard(addr.value)}
                 >
-                  <Copy className="w-4 h-4" />
+                  <Copy className="w-3 h-3 sm:w-4 sm:h-4" />
                 </Button>
                 <a
                   href={`https://sepolia.basescan.org/address/${addr.value}`}
                   target="_blank"
                   rel="noopener noreferrer"
                 >
-                  <Button size="icon" variant="ghost" className="h-8 w-8">
-                    <ExternalLink className="w-4 h-4" />
+                  <Button size="icon" variant="ghost" className="h-8 w-8 flex-shrink-0">
+                    <ExternalLink className="w-3 h-3 sm:w-4 sm:h-4" />
                   </Button>
                 </a>
               </div>
@@ -145,26 +145,26 @@ export function InfoSection() {
             placeholder="Enter address to check (0x...)"
             value={checkAddress}
             onChange={(e) => setCheckAddress(e.target.value)}
-            className="font-mono"
+            className="font-mono text-sm sm:text-base"
           />
-          <Button size="icon" variant="outline">
-            <Search className="w-4 h-4" />
+          <Button size="icon" variant="outline" className="shrink-0 w-10 h-10 sm:w-11 sm:h-11">
+            <Search className="w-3 h-3 sm:w-4 sm:h-4" />
           </Button>
         </div>
-        
+
         {checkAddress && /^0x[a-fA-F0-9]{40}$/.test(checkAddress) && (
-          <div className={`flex items-center gap-3 p-4 rounded-lg ${
+          <div className={`flex items-center gap-3 p-3 sm:p-4 rounded-lg ${
             isMerchantResult ? 'bg-success/10 border border-success/30' : 'bg-muted/50'
           }`}>
             {isMerchantResult ? (
               <>
-                <CheckCircle2 className="w-5 h-5 text-success" />
-                <span className="text-success font-medium">This address is a registered merchant</span>
+                <CheckCircle2 className="w-4 h-4 sm:w-5 sm:h-5 text-success flex-shrink-0" />
+                <span className="text-success font-medium text-sm sm:text-base">This address is a registered merchant</span>
               </>
             ) : (
               <>
-                <XCircle className="w-5 h-5 text-muted-foreground" />
-                <span className="text-muted-foreground">This address is not a merchant</span>
+                <XCircle className="w-4 h-4 sm:w-5 sm:h-5 text-muted-foreground flex-shrink-0" />
+                <span className="text-muted-foreground text-sm sm:text-base">This address is not a merchant</span>
               </>
             )}
           </div>
