@@ -81,42 +81,42 @@ export function Dashboard() {
 
       {/* Header */}
       <header className="sticky top-0 z-50 border-b border-border/50 bg-background/80 backdrop-blur-xl">
-        <div className="container mx-auto px-4 py-4">
+        <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-3 sm:py-4">
           <div className="flex items-center justify-between">
-            <div className="flex items-center gap-3">
-              <div className="w-10 h-10 rounded-xl bg-primary flex items-center justify-center">
-                <CreditCard className="w-5 h-5 text-primary-foreground" />
+            <div className="flex items-center gap-2 sm:gap-3">
+              <div className="w-8 h-8 sm:w-10 sm:h-10 rounded-lg sm:rounded-xl bg-primary flex items-center justify-center">
+                <CreditCard className="w-4 h-4 sm:w-5 sm:h-5 text-primary-foreground" />
               </div>
               <div>
-                <h1 className="text-xl font-bold gradient-text">BasePOS</h1>
+                <h1 className="text-lg sm:text-xl font-bold gradient-text">BasePOS</h1>
                 <p className="text-xs text-muted-foreground hidden sm:block">Decentralized POS on Base</p>
               </div>
             </div>
 
-            <div className="flex items-center gap-4">
+            <div className="flex items-center gap-2 sm:gap-4">
               {isConnected && (
-                <div className="hidden md:flex items-center gap-2">
-                  <div className={`px-3 py-1 rounded-full text-xs font-medium ${
+                <div className="hidden lg:flex items-center gap-2">
+                  <div className={`px-2 sm:px-3 py-1 rounded-full text-xs font-medium ${
                     isPaused ? 'bg-destructive/20 text-destructive' : 'bg-success/20 text-success'
                   }`}>
                     {isPaused ? 'Paused' : 'Live'}
                   </div>
-                  <div className="px-3 py-1 rounded-full bg-primary/20 text-primary text-xs font-medium capitalize">
+                  <div className="px-2 sm:px-3 py-1 rounded-full bg-primary/20 text-primary text-xs font-medium capitalize">
                     {role}
                   </div>
                 </div>
               )}
-              
+
               <ConnectKitButton />
-              
+
               {isConnected && (
                 <Button
                   variant="ghost"
                   size="icon"
-                  className="md:hidden"
+                  className="lg:hidden"
                   onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
                 >
-                  {mobileMenuOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
+                  {mobileMenuOpen ? <X className="w-4 h-4 sm:w-5 sm:h-5" /> : <Menu className="w-4 h-4 sm:w-5 sm:h-5" />}
                 </Button>
               )}
             </div>
@@ -124,7 +124,7 @@ export function Dashboard() {
 
           {/* Mobile Menu */}
           {mobileMenuOpen && isConnected && (
-            <div className="md:hidden absolute left-0 right-0 top-full bg-background/95 backdrop-blur-xl border-b border-border/50 p-4 animate-fade-in">
+            <div className="lg:hidden absolute left-0 right-0 top-full bg-background/95 backdrop-blur-xl border-b border-border/50 p-4 animate-fade-in">
               <div className="flex flex-col gap-2">
                 {visibleTabs.map((tab) => {
                   const Icon = tab.icon;
@@ -135,14 +135,14 @@ export function Dashboard() {
                         setActiveTab(tab.id);
                         setMobileMenuOpen(false);
                       }}
-                      className={`flex items-center gap-3 px-4 py-3 rounded-lg transition-all ${
+                      className={`flex items-center gap-3 px-4 py-3 rounded-lg transition-all text-left ${
                         activeTab === tab.id
                           ? 'bg-primary text-primary-foreground'
                           : 'text-muted-foreground hover:bg-muted'
                       }`}
                     >
-                      <Icon className="w-5 h-5" />
-                      <span className="font-medium">{tab.label}</span>
+                      <Icon className="w-4 h-4 sm:w-5 sm:h-5" />
+                      <span className="font-medium text-sm sm:text-base">{tab.label}</span>
                     </button>
                   );
                 })}
@@ -152,11 +152,11 @@ export function Dashboard() {
         </div>
       </header>
 
-      <div className="container mx-auto px-4 py-8">
-        <div className="flex flex-col lg:flex-row gap-8">
+      <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-4 sm:py-6 lg:py-8">
+        <div className="flex flex-col xl:flex-row gap-4 sm:gap-6 lg:gap-8">
           {/* Sidebar - Desktop */}
           {isConnected && (
-            <aside className="hidden md:block w-64 shrink-0">
+            <aside className="hidden xl:block w-64 xl:w-72 shrink-0">
               <nav className="glass-card p-4 sticky top-24 space-y-2">
                 {visibleTabs.map((tab) => {
                   const Icon = tab.icon;
