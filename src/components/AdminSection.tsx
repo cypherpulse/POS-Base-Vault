@@ -76,13 +76,13 @@ export function AdminSection() {
 
   if (!isOwner) {
     return (
-      <div className="glass-card p-8 animate-fade-in">
+      <div className="glass-card p-4 sm:p-6 lg:p-8 animate-fade-in">
         <div className="flex flex-col items-center text-center space-y-4">
-          <div className="w-16 h-16 rounded-full bg-muted flex items-center justify-center">
-            <Shield className="w-8 h-8 text-muted-foreground" />
+          <div className="w-12 h-12 sm:w-16 sm:h-16 rounded-full bg-muted flex items-center justify-center">
+            <Shield className="w-6 h-6 sm:w-8 sm:h-8 text-muted-foreground" />
           </div>
-          <h3 className="text-xl font-bold text-foreground">Admin Access Required</h3>
-          <p className="text-muted-foreground max-w-sm">
+          <h3 className="text-lg sm:text-xl font-bold text-foreground">Admin Access Required</h3>
+          <p className="text-muted-foreground max-w-sm text-sm sm:text-base">
             Only the contract owner can access admin functions.
           </p>
         </div>
@@ -91,25 +91,25 @@ export function AdminSection() {
   }
 
   return (
-    <div className="glass-card p-6 lg:p-8 space-y-8 animate-fade-in">
-      <div className="flex items-center gap-3">
-        <div className="w-12 h-12 rounded-xl bg-primary/20 flex items-center justify-center">
-          <Shield className="w-6 h-6 text-primary" />
+    <div className="glass-card p-4 sm:p-6 lg:p-8 space-y-6 sm:space-y-8 animate-fade-in">
+      <div className="flex items-center gap-3 mb-4 sm:mb-6">
+        <div className="w-10 h-10 sm:w-12 sm:h-12 rounded-lg sm:rounded-xl bg-primary/20 flex items-center justify-center">
+          <Shield className="w-5 h-5 sm:w-6 sm:h-6 text-primary" />
         </div>
         <div>
-          <h2 className="text-xl font-bold text-foreground">Admin Controls</h2>
+          <h2 className="text-lg sm:text-xl font-bold text-foreground">Admin Controls</h2>
           <p className="text-muted-foreground text-sm">Owner-only contract management</p>
         </div>
       </div>
 
       {/* Merchant Management */}
       <div className="space-y-4">
-        <h3 className="text-lg font-semibold text-foreground flex items-center gap-2">
-          <UserPlus className="w-5 h-5 text-primary" />
+        <h3 className="text-base sm:text-lg font-semibold text-foreground flex items-center gap-2">
+          <UserPlus className="w-4 h-4 sm:w-5 sm:h-5 text-primary" />
           Merchant Management
         </h3>
-        
-        <div className="grid gap-4 md:grid-cols-2">
+
+        <div className="grid gap-4 sm:grid-cols-2">
           <div className="space-y-2">
             <label className="text-sm font-medium text-muted-foreground">Add Merchant</label>
             <div className="flex gap-2">
@@ -117,15 +117,15 @@ export function AdminSection() {
                 placeholder="0x..."
                 value={merchantAddress}
                 onChange={(e) => setMerchantAddress(e.target.value)}
-                className="font-mono"
+                className="font-mono text-sm sm:text-base"
               />
               <Button
                 onClick={handleAddMerchant}
                 disabled={!isValidAddress(merchantAddress) || isAddingMerchant}
                 size="icon"
-                className="shrink-0"
+                className="shrink-0 w-10 h-10 sm:w-11 sm:h-11"
               >
-                {isAddingMerchant ? <Loader2 className="w-4 h-4 animate-spin" /> : <UserPlus className="w-4 h-4" />}
+                {isAddingMerchant ? <Loader2 className="w-3 h-3 sm:w-4 sm:h-4 animate-spin" /> : <UserPlus className="w-3 h-3 sm:w-4 sm:h-4" />}
               </Button>
             </div>
           </div>
@@ -137,16 +137,16 @@ export function AdminSection() {
                 placeholder="0x..."
                 value={removeMerchantAddress}
                 onChange={(e) => setRemoveMerchantAddress(e.target.value)}
-                className="font-mono"
+                className="font-mono text-sm sm:text-base"
               />
               <Button
                 onClick={handleRemoveMerchant}
                 disabled={!isValidAddress(removeMerchantAddress) || isRemovingMerchant}
                 variant="destructive"
                 size="icon"
-                className="shrink-0"
+                className="shrink-0 w-10 h-10 sm:w-11 sm:h-11"
               >
-                {isRemovingMerchant ? <Loader2 className="w-4 h-4 animate-spin" /> : <UserMinus className="w-4 h-4" />}
+                {isRemovingMerchant ? <Loader2 className="w-3 h-3 sm:w-4 sm:h-4 animate-spin" /> : <UserMinus className="w-3 h-3 sm:w-4 sm:h-4" />}
               </Button>
             </div>
           </div>
@@ -155,23 +155,23 @@ export function AdminSection() {
 
       {/* Contract State */}
       <div className="space-y-4">
-        <h3 className="text-lg font-semibold text-foreground flex items-center gap-2">
-          {isPaused ? <Pause className="w-5 h-5 text-destructive" /> : <Play className="w-5 h-5 text-success" />}
+        <h3 className="text-base sm:text-lg font-semibold text-foreground flex items-center gap-2">
+          {isPaused ? <Pause className="w-4 h-4 sm:w-5 sm:h-5 text-destructive" /> : <Play className="w-4 h-4 sm:w-5 sm:h-5 text-success" />}
           Contract State
         </h3>
-        
-        <div className="flex items-center gap-4">
-          <div className={`px-4 py-2 rounded-lg font-medium ${isPaused ? 'bg-destructive/20 text-destructive' : 'bg-success/20 text-success'}`}>
+
+        <div className="flex flex-col sm:flex-row sm:items-center gap-3 sm:gap-4">
+          <div className={`px-3 py-2 sm:px-4 sm:py-2 rounded-lg font-medium text-sm sm:text-base ${isPaused ? 'bg-destructive/20 text-destructive' : 'bg-success/20 text-success'}`}>
             {isPaused ? 'Paused' : 'Active'}
           </div>
-          
+
           {isPaused ? (
-            <Button onClick={() => unpause()} disabled={isUnpausing} variant="outline">
+            <Button onClick={() => unpause()} disabled={isUnpausing} variant="outline" className="w-full sm:w-auto">
               {isUnpausing ? <Loader2 className="w-4 h-4 mr-2 animate-spin" /> : <Play className="w-4 h-4 mr-2" />}
               Resume Contract
             </Button>
           ) : (
-            <Button onClick={() => pause()} disabled={isPausing} variant="destructive">
+            <Button onClick={() => pause()} disabled={isPausing} variant="destructive" className="w-full sm:w-auto">
               {isPausing ? <Loader2 className="w-4 h-4 mr-2 animate-spin" /> : <Pause className="w-4 h-4 mr-2" />}
               Pause Contract
             </Button>
@@ -181,23 +181,23 @@ export function AdminSection() {
 
       {/* Emergency Withdraw */}
       <div className="space-y-4">
-        <h3 className="text-lg font-semibold text-foreground flex items-center gap-2">
-          <AlertTriangle className="w-5 h-5 text-warning" />
+        <h3 className="text-base sm:text-lg font-semibold text-foreground flex items-center gap-2">
+          <AlertTriangle className="w-4 h-4 sm:w-5 sm:h-5 text-warning" />
           Emergency Withdraw
         </h3>
-        
-        <div className="p-4 rounded-xl bg-warning/10 border border-warning/30 text-sm text-warning mb-4">
+
+        <div className="p-3 sm:p-4 rounded-xl bg-warning/10 border border-warning/30 text-sm text-warning mb-4">
           Warning: This will bypass normal withdrawal flow. Use only in emergencies.
         </div>
 
-        <div className="grid gap-4 md:grid-cols-2">
+        <div className="grid gap-4 sm:grid-cols-2">
           <div className="space-y-2">
             <label className="text-sm font-medium text-muted-foreground">Recipient Address</label>
             <Input
               placeholder="0x..."
               value={emergencyTo}
               onChange={(e) => setEmergencyTo(e.target.value)}
-              className="font-mono"
+              className="font-mono text-sm sm:text-base"
             />
           </div>
           <div className="space-y-2">
@@ -208,7 +208,7 @@ export function AdminSection() {
               placeholder="0.0"
               value={emergencyAmount}
               onChange={(e) => setEmergencyAmount(e.target.value)}
-              className="font-mono"
+              className="font-mono text-sm sm:text-base"
             />
           </div>
         </div>
@@ -217,7 +217,7 @@ export function AdminSection() {
           onClick={handleEmergencyWithdraw}
           disabled={!isValidAddress(emergencyTo) || !emergencyAmount || isEmergencyWithdrawing}
           variant="destructive"
-          className="w-full"
+          className="w-full h-10 sm:h-11 text-sm sm:text-base"
         >
           {isEmergencyWithdrawing ? <Loader2 className="w-4 h-4 mr-2 animate-spin" /> : <AlertTriangle className="w-4 h-4 mr-2" />}
           Emergency Withdraw
@@ -226,8 +226,8 @@ export function AdminSection() {
 
       {/* Ownership */}
       <div className="space-y-4">
-        <h3 className="text-lg font-semibold text-foreground flex items-center gap-2">
-          <Crown className="w-5 h-5 text-primary" />
+        <h3 className="text-base sm:text-lg font-semibold text-foreground flex items-center gap-2">
+          <Crown className="w-4 h-4 sm:w-5 sm:h-5 text-primary" />
           Ownership Management
         </h3>
 
@@ -239,13 +239,14 @@ export function AdminSection() {
                 placeholder="New owner address (0x...)"
                 value={newOwner}
                 onChange={(e) => setNewOwner(e.target.value)}
-                className="font-mono"
+                className="font-mono text-sm sm:text-base"
               />
               <AlertDialog>
                 <AlertDialogTrigger asChild>
                   <Button
                     disabled={!isValidAddress(newOwner) || isTransferring}
                     variant="outline"
+                    className="shrink-0"
                   >
                     {isTransferring ? <Loader2 className="w-4 h-4 animate-spin" /> : 'Transfer'}
                   </Button>
@@ -270,7 +271,7 @@ export function AdminSection() {
 
           <AlertDialog>
             <AlertDialogTrigger asChild>
-              <Button variant="destructive" className="w-full" disabled={isRenouncing}>
+              <Button variant="destructive" className="w-full h-10 sm:h-11 text-sm sm:text-base" disabled={isRenouncing}>
                 {isRenouncing ? <Loader2 className="w-4 h-4 mr-2 animate-spin" /> : <AlertTriangle className="w-4 h-4 mr-2" />}
                 Renounce Ownership
               </Button>
