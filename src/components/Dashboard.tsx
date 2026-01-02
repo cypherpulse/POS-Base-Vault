@@ -196,12 +196,12 @@ export function Dashboard() {
       </div>
 
       {/* Footer */}
-      <footer className="border-t border-border/50 bg-background/80 backdrop-blur-xl mt-8">
-        <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-6 sm:py-8">
-          <div className="flex flex-col sm:flex-row items-center justify-between gap-4">
+      <footer className="border-t border-border/50 bg-background/80 backdrop-blur-xl mt-4 sm:mt-6">
+        <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-3 sm:py-4">
+          <div className="flex flex-col sm:flex-row items-center justify-between gap-3 sm:gap-4">
             <div className="flex items-center gap-2">
-              <div className="w-8 h-8 rounded-lg bg-primary/20 flex items-center justify-center">
-                <CreditCard className="w-4 h-4 text-primary" />
+              <div className="w-7 h-7 sm:w-8 sm:h-8 rounded-lg bg-primary/20 flex items-center justify-center">
+                <CreditCard className="w-3 h-3 sm:w-4 sm:h-4 text-primary" />
               </div>
               <div className="text-center sm:text-left">
                 <p className="text-sm font-semibold text-foreground">BasePOS</p>
@@ -209,25 +209,25 @@ export function Dashboard() {
               </div>
             </div>
 
-            <div className="flex flex-col sm:flex-row items-center gap-2 sm:gap-6 text-xs text-muted-foreground">
-              <a 
-                href="https://basescan.org" 
-                target="_blank" 
+            <div className="flex flex-col sm:flex-row items-center gap-1 sm:gap-4 text-xs text-muted-foreground">
+              <a
+                href="https://basescan.org"
+                target="_blank"
                 rel="noopener noreferrer"
                 className="hover:text-primary transition-colors"
               >
                 Base Network
               </a>
-              <a 
-                href="https://github.com" 
-                target="_blank" 
+              <a
+                href="https://github.com"
+                target="_blank"
                 rel="noopener noreferrer"
                 className="hover:text-primary transition-colors"
               >
                 GitHub
               </a>
-              <a 
-                href="#" 
+              <a
+                href="#"
                 className="hover:text-primary transition-colors"
               >
                 Documentation
